@@ -6,7 +6,17 @@ POST http://localhost:5000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Donatas1",
-    "email": "donas1@test.com",
+    "name": "Donatas2",
+    "email": "donas2@test.com",
+    "password": "test"
+}
+
+###
+
+POST http://localhost:5000/api/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "donas2@test.com",
     "password": "test"
 }
