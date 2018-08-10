@@ -4,8 +4,11 @@
   "description": "Social network for developers",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node start.js",
-    "server": "nodemon start.js"
+    "server": "nodemon start.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "TheBestDon",
   "license": "ISC",
