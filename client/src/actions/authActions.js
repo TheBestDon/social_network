@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from ".registry.npmjs.org/axios/0.18.0/node_modules/axios";
 import setAuthToken from "../utils/setAuthToken";
-import jwt_decode from "jwt-decode";
+import jwt_decode from ".registry.npmjs.org/jwt-decode/2.2.0/node_modules/jwt-decode";
 
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 
