@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authAction";
@@ -20,11 +20,17 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if(nextProps.errors) {
+  componentDidMount () {
+    if(this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps) {
+    if (nextProps.errors) {
       return {
         errors: nextProps.errors
-      }
+      };
     }
   }
 
