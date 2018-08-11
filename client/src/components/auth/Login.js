@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authAction";
+import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFielGroup";
 
 class Login extends Component {
