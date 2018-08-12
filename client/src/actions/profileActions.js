@@ -1,4 +1,4 @@
-import axios from ".registry.npmjs.org/axios/0.18.0/node_modules/axios";
+import axios from "axios";
 
 import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from "./types";
 
@@ -27,10 +27,9 @@ export const setProfileLoading = () => {
     type: PROFILE_LOADING
   };
 };
-// Profile loading
+// Clear profile
 export const clearCurrentProfile = () => {
   return {
-    type: CLEAR_CURRENT_PROFILE,
-    payload: {}
+    type: CLEAR_CURRENT_PROFILE
   };
 };
