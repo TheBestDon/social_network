@@ -39,10 +39,11 @@ class CreateProfile extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.errors !== prevState.errors) {
-      return {errors: nextProps.errors};
+      return {errors: nextProps.errors}
+    } else 
+      return null;
     }
-  }
-
+  
   onSubmit(e) {
     e.preventDefault();
 

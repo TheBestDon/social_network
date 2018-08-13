@@ -4,6 +4,7 @@ import {withRouter, Link} from "react-router-dom";
 import {connect} from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import {addExperience} from '../../actions/profileActions';
 
 class AddExperience extends Component {
   constructor(props) {
@@ -19,6 +20,53 @@ class AddExperience extends Component {
       errors: '',
       disabled: false
     }
+
+    this.onChange = this
+      .onChange
+      .bind(this);
+    this.onSubmit = this
+      .onSubmit
+      .bind(this);
+    this.onCheck = this
+      .onCheck
+      .bind(this);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.errors !== prevState.errors) {
+      return {errors: nextProps.errors}
+    } else 
+      return null;
+    }
+  
+  onSubmit(e) {
+    e.preventDefault();
+
+    const expData = {
+      company: this.state.company,
+      title: this.state.title,
+      location: this.state.location,
+      from: this.state.from,
+      to: this.state.to,
+      current: this.state.current,
+      description: this.state.description
+    }
+    this
+      .props
+      .addExperience(expData, this.props.history);
+  }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  onCheck(e) {
+    this.setState({
+      disabled: !this.state.disabled,
+      current: !this.state.current
+    })
   }
 
   render() {
@@ -74,11 +122,11 @@ class AddExperience extends Component {
                 <div className="form-check mb-4">
                   <input
                     type="checkbox"
-                    className="from-check-input"
+                    className="form-check-input"
                     name="current"
                     value={this.state.current}
                     checked={this.state.current}
-                    onChange={this.oncheck}
+                    onChange={this.onCheck}
                     id="current"/>
                   <label htmlFor="current" className="form-check-label">Current Job</label>
                 </div>
@@ -88,8 +136,8 @@ class AddExperience extends Component {
                   value={this.state.description}
                   onChange={this.onChange}
                   error={errors.description}
-                  info="Tell usabout the possition"/>
-                <input type="submit" value="Submit"/>
+                  info="Tell us about the possition"/>
+                <input type="submit" value="Submit" className="btn btn-info btn-block mt-4"/>
               </form>
             </div>
           </div>
@@ -100,10 +148,11 @@ class AddExperience extends Component {
 }
 
 AddExperience.propTypes = {
+  addExperience: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({profile: state.profile, errors: state.errors})
 
-export default connect(mapStateToProps)(withRouter(AddExperience));
+export default connect(mapStateToProps, {addExperience})(withRouter(AddExperience));

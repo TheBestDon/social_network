@@ -43,7 +43,6 @@ class EditProfile extends Component {
       return {errors: nextProps.errors}
     } else 
       return null;
-
     }
   
   componentDidUpdate(prevProps) {

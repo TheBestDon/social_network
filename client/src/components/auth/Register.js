@@ -35,10 +35,11 @@ class Register extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.errors !== prevState.errors) {
-      return {errors: nextProps.errors};
+      return {errors: nextProps.errors}
+    } else 
+      return null;
     }
-  }
-
+  
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value

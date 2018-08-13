@@ -32,10 +32,11 @@ class Login extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.errors !== prevState.errors) {
-      return {errors: nextProps.errors};
+      return {errors: nextProps.errors}
+    } else 
+      return null;
     }
-  }
-
+  
   componentDidUpdate(prevProps, prevState) {
     if (this.props.auth.isAuthenticated) {
       this
