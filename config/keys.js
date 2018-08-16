@@ -1,2 +1,5 @@
-export const mongoURI = 'mongodb://Donatas1:Zalgiris1@ds217092.mlab.com:17092/devconnector';
-export const secretOrKey = 'egwyhbwehqbweid';
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./keys_prod')
+} else {
+  module.exports = require('./keys_dev');
+}
