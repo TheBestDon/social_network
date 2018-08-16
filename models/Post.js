@@ -1,11 +1,11 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 // Create Schema
 const PostSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: "User"
   },
   text: {
     type: String,
@@ -21,7 +21,7 @@ const PostSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: "User"
       }
     }
   ],
@@ -29,7 +29,7 @@ const PostSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: "User"
       },
       text: {
         type: String,
@@ -53,6 +53,6 @@ const PostSchema = new Schema({
   }
 });
 
-const Post = mongoose.model('Post', PostSchema, 'posts');
+const Post = mongoose.model("Post", PostSchema, "posts");
 
 export default Post;

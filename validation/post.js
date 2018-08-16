@@ -1,21 +1,20 @@
-import Validator from 'validator';
-import isEmpty from './is-empty';
+import Validator from "validator";
+import isEmpty from "./is-empty";
 
 export function validatePostInput(data) {
   let errors = {};
 
-   data.text = !isEmpty(data.text) ? data.text : '';
+  data.text = !isEmpty(data.text) ? data.text : "";
 
-
-  if(!Validator.isLength(data.text, {min: 10, max: 300})) {
-    errors.text = 'Post needs to be between 10 and 300 characters long';
+  if (!Validator.isLength(data.text, { min: 10, max: 300 })) {
+    errors.text = "Post needs to be between 10 and 300 characters long";
   }
-  if(Validator.isEmpty(data.text)) {
-    errors.text = 'Text field is required';
+  if (Validator.isEmpty(data.text)) {
+    errors.text = "Text field is required";
   }
 
- return {
+  return {
     errors,
     isValid: isEmpty(errors)
-  }
+  };
 }

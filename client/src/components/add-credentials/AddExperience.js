@@ -1,44 +1,37 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {withRouter, Link} from "react-router-dom";
-import {connect} from "react-redux";
+import { withRouter, Link } from "react-router-dom";
+import { connect } from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import {addExperience} from '../../actions/profileActions';
+import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
+import { addExperience } from "../../actions/profileActions";
 
 class AddExperience extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: '',
-      title: '',
-      location: '',
-      from: '',
-      to: '',
+      company: "",
+      title: "",
+      location: "",
+      from: "",
+      to: "",
       current: false,
-      description: '',
-      errors: '',
+      description: "",
+      errors: "",
       disabled: false
-    }
+    };
 
-    this.onChange = this
-      .onChange
-      .bind(this);
-    this.onSubmit = this
-      .onSubmit
-      .bind(this);
-    this.onCheck = this
-      .onCheck
-      .bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onCheck = this.onCheck.bind(this);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.errors !== prevState.errors) {
-      return {errors: nextProps.errors}
-    } else 
-      return null;
-    }
-  
+      return { errors: nextProps.errors };
+    } else return null;
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -50,27 +43,25 @@ class AddExperience extends Component {
       to: this.state.to,
       current: this.state.current,
       description: this.state.description
-    }
-    this
-      .props
-      .addExperience(expData, this.props.history);
+    };
+    this.props.addExperience(expData, this.props.history);
   }
 
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
   }
 
   onCheck(e) {
     this.setState({
       disabled: !this.state.disabled,
       current: !this.state.current
-    })
+    });
   }
 
   render() {
-    const {errors} = this.state;
+    const { errors } = this.state;
 
     return (
       <div className="add-experience">
@@ -81,7 +72,10 @@ class AddExperience extends Component {
                 Go Back
               </Link>
               <h1 className="dispalay-4 text-center">Add Experience</h1>
-              <p className="lead text-center">Add any job or possition that you have had in the past or current</p>
+              <p className="lead text-center">
+                Add any job or possition that you have had in the past or
+                current
+              </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -89,26 +83,30 @@ class AddExperience extends Component {
                   name="company"
                   value={this.state.company}
                   onChange={this.onChange}
-                  error={errors.company}/>
+                  error={errors.company}
+                />
                 <TextFieldGroup
                   placeholder="Job Title"
                   name="title"
                   value={this.state.title}
                   onChange={this.onChange}
-                  error={errors.title}/>
+                  error={errors.title}
+                />
                 <TextFieldGroup
                   placeholder="Location"
                   name="location"
                   value={this.state.location}
                   onChange={this.onChange}
-                  error={errors.location}/>
+                  error={errors.location}
+                />
                 <h6>From Date</h6>
                 <TextFieldGroup
                   name="from"
                   type="date"
                   value={this.state.from}
                   onChange={this.onChange}
-                  error={errors.from}/>
+                  error={errors.from}
+                />
                 <h6>To Date</h6>
                 <TextFieldGroup
                   name="to"
@@ -116,9 +114,8 @@ class AddExperience extends Component {
                   value={this.state.to}
                   onChange={this.onChange}
                   error={errors.to}
-                  disabled={this.state.disabled
-                  ? 'disabled'
-                  : ''}/>
+                  disabled={this.state.disabled ? "disabled" : ""}
+                />
                 <div className="form-check mb-4">
                   <input
                     type="checkbox"
@@ -127,8 +124,11 @@ class AddExperience extends Component {
                     value={this.state.current}
                     checked={this.state.current}
                     onChange={this.onCheck}
-                    id="current"/>
-                  <label htmlFor="current" className="form-check-label">Current Job</label>
+                    id="current"
+                  />
+                  <label htmlFor="current" className="form-check-label">
+                    Current Job
+                  </label>
                 </div>
                 <TextAreaFieldGroup
                   placeholder="Job Description"
@@ -136,14 +136,19 @@ class AddExperience extends Component {
                   value={this.state.description}
                   onChange={this.onChange}
                   error={errors.description}
-                  info="Tell us about the possition"/>
-                <input type="submit" value="Submit" className="btn btn-info btn-block mt-4"/>
+                  info="Tell us about the possition"
+                />
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="btn btn-info btn-block mt-4"
+                />
               </form>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -151,8 +156,14 @@ AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
-}
+};
 
-const mapStateToProps = state => ({profile: state.profile, errors: state.errors})
+const mapStateToProps = state => ({
+  profile: state.profile,
+  errors: state.errors
+});
 
-export default connect(mapStateToProps, {addExperience})(withRouter(AddExperience));
+export default connect(
+  mapStateToProps,
+  { addExperience }
+)(withRouter(AddExperience));
